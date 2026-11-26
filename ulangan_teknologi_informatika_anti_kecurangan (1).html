@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ulangan Harian 1 - Teknologi Informatika</title>
+<style>
+:root{--bg:#0b1423;--panel:#172a43;--panel2:#223a57;--white:#f5f8fc;--muted:#b8c6d8;--green:#54d6a0;--yellow:#f4bd58;--red:#ff7777}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at top,#203958,#0b1423 65%);color:var(--white);font-family:Arial, sans-serif}
+button{border:0;border-radius:12px;padding:13px 18px;font-weight:800;font-size:15px;cursor:pointer}button:active{transform:scale(.97)}button:disabled{opacity:.4;cursor:not-allowed}
+.primary{background:var(--green);color:#092016}.secondary{background:#35516f;color:white}.outline{background:transparent;border:1px solid #7890ad;color:white}.warning{background:var(--yellow);color:#302000}.danger{background:#b84955;color:white}
+.wrap{width:min(1120px,94vw);margin:auto;padding:24px 0 40px}.top{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;letter-spacing:.1em;font-weight:bold}.brand{color:var(--green)}
+.screen{display:none}.screen.active{display:block}.welcome{min-height:82vh;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero,.finish{width:min(800px,100%);padding:clamp(28px,6vw,65px);border:1px solid #3c5878;border-radius:26px;background:linear-gradient(145deg,#1c3451,#122238);box-shadow:0 22px 70px #0006}
+.kicker{color:var(--green);font-size:13px;letter-spacing:.17em;font-weight:900}h1{font-size:clamp(35px,6vw,66px);line-height:1.05;margin:18px 0 8px}h2{font-size:clamp(22px,3.5vw,34px);margin:0}.sub{color:var(--muted);font-size:18px;line-height:1.55;margin:18px 0 28px}
+.pills{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:25px 0}.pill{padding:10px 15px;border-radius:30px;background:#29415e;border:1px solid #45617f;font-size:14px}
+.head{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:28px 0 18px}.counter{color:var(--muted);font-weight:bold;margin-top:12px}.clock{display:flex;align-items:center;gap:15px;padding:12px 17px;border:1px solid #45617f;background:#172d48;border-radius:16px}.clock small{display:block;color:var(--muted);letter-spacing:.12em}.time{font-size:clamp(30px,4vw,44px);font-weight:900;font-variant-numeric:tabular-nums;min-width:108px;text-align:right}.time.paused{color:var(--yellow)}.time.urgent{color:var(--red)}
+.progress{height:9px;background:#2a405c;border-radius:20px;overflow:hidden;margin-bottom:22px}.bar{height:100%;background:linear-gradient(90deg,var(--green),#79b8ff);width:0;transition:width .2s}
+.card{padding:clamp(22px,4vw,42px);background:linear-gradient(145deg,#192f4a,#14263d);border:1px solid #3a5675;border-radius:22px;box-shadow:0 16px 48px #0004}
+.label{color:var(--green);font-size:13px;font-weight:900;letter-spacing:.15em;margin-bottom:16px}.question{font-size:clamp(18px,2.4vw,26px);line-height:1.55;font-weight:600;white-space:pre-line;margin:0 0 25px}
+.options{display:grid;gap:12px}.option{display:flex;align-items:flex-start;gap:14px;background:#223a57;border:1px solid #405e7f;padding:14px 16px;border-radius:14px;font-size:clamp(15px,1.8vw,19px);line-height:1.45}.letter{flex:0 0 34px;height:34px;border-radius:9px;background:#f0f5fb;color:#172a43;display:grid;place-items:center;font-weight:900}
+.controls{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:20px}.group{display:flex;gap:10px;flex-wrap:wrap}.note{text-align:center;color:var(--muted);font-size:14px;margin-top:18px}
+@media(max-width:650px){.head{align-items:stretch;flex-direction:column}.clock{justify-content:space-between}.controls,.group{width:100%}.group button{flex:1}.controls>button{flex:1}.top{font-size:10px}}
+
+/* LAPISAN PERLINDUNGAN ANTI-KECURANGAN (terbatas oleh kemampuan browser) */
+html, body, body * {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+img { -webkit-user-drag: none !important; user-drag: none !important; }
+@media print {
+  body * { visibility: hidden !important; }
+  body::before {
+    content: "PENCETAKAN DINONAKTIFKAN SELAMA UJIAN";
+    visibility: visible !important;
+    display: block;
+    position: fixed;
+    inset: 40% 5% auto;
+    text-align: center;
+    font: bold 24px Arial, sans-serif;
+    color: #111;
+  }
+}
+#securityNotice {
+  position: fixed; z-index: 99999; left: 50%; bottom: 18px;
+  transform: translateX(-50%); width: min(92vw, 560px);
+  padding: 13px 17px; border: 1px solid #f4bd58; border-radius: 12px;
+  background: #302817; color: #fff4d6; box-shadow: 0 8px 30px #0008;
+  font: 14px/1.45 Arial, sans-serif; text-align: center;
+  display: none;
+}
+#securityNotice.show { display: block; }
+
+</style></head><body><main class="wrap">
+<div class="top"><span class="brand">MEDIA KUIS KELAS</span><span>TEKNOLOGI INFORMATIKA</span></div>
+<section id="welcome" class="screen active welcome"><div class="hero"><div class="kicker">PENILAIAN HARIAN</div><h1>ULANGAN HARIAN 1</h1><h2>TEKNOLOGI INFORMATIKA</h2><p class="sub">Materi: Transformasi Digital</p><div class="pills"><span class="pill">25 Soal Pilihan Ganda</span><span class="pill">90 Detik per Soal</span><span class="pill">Mode Presentasi</span></div><p class="sub">Bacalah setiap soal dengan cermat. Tuliskan pilihan jawaban pada kertas masing-masing.</p><button class="primary" id="start">MULAI ULANGAN</button></div></section>
+<section id="quiz" class="screen"><div class="head"><div><div class="kicker">ULANGAN HARIAN 1</div><h2>TEKNOLOGI INFORMATIKA</h2><div class="counter" id="counter">SOAL 1 / 25</div></div><div class="clock"><div><small>WAKTU TERSISA</small><div class="time" id="time">01:30</div></div><button class="warning" id="pause">PAUSE</button></div></div>
+<div class="progress"><div class="bar" id="bar"></div></div><article class="card"><div class="label">PERTANYAAN</div><p class="question" id="question"></p><div class="options" id="options"></div></article>
+<div class="controls"><div class="group"><button class="secondary" id="prev">← Sebelumnya</button><button class="secondary" id="next">Selanjutnya →</button></div><div class="group"><button class="outline" id="full">⛶ Layar Penuh</button><button class="danger" id="restart">Ulangi</button></div></div><div class="note" id="note">Siswa menuliskan jawaban pada kertas masing-masing.</div></section>
+<section id="finish" class="screen welcome"><div class="finish"><div class="kicker">SELESAI</div><h1>ULANGAN SELESAI</h1><p class="sub">Seluruh 25 soal telah ditampilkan.<br>Silakan periksa kembali jawaban pada kertas masing-masing.</p><button class="primary" id="again">KEMBALI KE AWAL</button></div></section>
+</main><script>
+const questions=[{"q": "Sebuah toko awalnya hanya melayani pembelian secara langsung. Pemilik toko kemudian memindai seluruh katalog produk menjadi file PDF. Beberapa bulan kemudian, toko mulai menggunakan marketplace, pembayaran digital, sistem inventori, dan analisis data penjualan untuk menentukan strategi pemasaran.\n\nBerdasarkan perkembangan tersebut, kegiatan yang menunjukkan transformasi digital adalah ....", "o": ["Memindai katalog produk menjadi PDF", "Menyimpan foto produk dalam komputer", "Mengubah seluruh proses penjualan dan pengelolaan toko dengan teknologi digital", "Mengganti buku catatan dengan dokumen digital", "Menggunakan komputer untuk mencetak laporan penjualan"]}, {"q": "Sebuah sekolah mengubah pencatatan nilai dari buku tulis menjadi aplikasi. Aplikasi tersebut dapat menghitung nilai, menyimpan data, dan membuat laporan secara otomatis. Namun, proses pembelajaran dan komunikasi sekolah masih dilakukan seperti sebelumnya.\n\nJenis perubahan yang paling tepat menggambarkan kegiatan tersebut adalah ....", "o": ["Digitasi", "Digitalisasi", "Transformasi digital menyeluruh", "Otomatisasi industri", "Inovasi model bisnis"]}, {"q": "Sebuah perusahaan memiliki banyak data transaksi pelanggan, tetapi selama ini keputusan pembelian stok hanya berdasarkan perkiraan manajer. Setelah menggunakan sistem analisis data, perusahaan dapat mengetahui produk terlaris dan waktu pembelian tertinggi.\n\nKarakteristik transformasi digital yang paling terlihat pada kasus tersebut adalah ....", "o": ["Berorientasi pada pengguna", "Berbasis data", "Berbasis perangkat keras", "Mengurangi konektivitas", "Menghilangkan seluruh pekerjaan manusia"]}, {"q": "Sebuah sekolah ingin memberikan pembelajaran yang lebih personal. Sekolah menggunakan sistem AI untuk menganalisis hasil latihan siswa dan memberikan rekomendasi materi sesuai kemampuan masing-masing siswa.\n\nTeknologi AI pada kasus tersebut paling tepat dimanfaatkan untuk ....", "o": ["Menggantikan seluruh peran guru dalam pembelajaran", "Menghapus kebutuhan evaluasi pembelajaran", "Menentukan nilai siswa tanpa pemeriksaan", "Membantu menganalisis perkembangan dan kebutuhan belajar siswa", "Mengubah seluruh materi menjadi dokumen PDF"]}, {"q": "Sebuah pabrik ingin mengetahui kondisi suhu mesin secara langsung. Sensor dipasang pada mesin dan mengirimkan data melalui internet ke ruang pemantauan. Ketika suhu melebihi batas tertentu, sistem memberikan peringatan.\n\nTeknologi yang paling sesuai dengan kebutuhan tersebut adalah ....", "o": ["Blockchain", "Cloud Computing", "Internet of Things", "Extended Reality", "Big Data"]}, {"q": "Seorang siswa mengerjakan tugas kelompok. Semua anggota kelompok dapat membuka, mengedit, dan menyimpan dokumen yang sama melalui internet tanpa harus mengirimkan file berulang kali.\n\nTeknologi yang mendukung kegiatan tersebut adalah ....", "o": ["Robotika", "Cloud Computing", "Blockchain", "Virtual Reality", "Cybersecurity"]}, {"q": "Sebuah perusahaan perdagangan memiliki jutaan catatan transaksi, data pelanggan, riwayat pembelian, dan aktivitas pengunjung website. Perusahaan ingin mengolah seluruh data tersebut untuk mengetahui tren permintaan pasar.\n\nTeknologi yang paling sesuai untuk kebutuhan tersebut adalah ....", "o": ["Big Data", "Virtual Reality", "Robotika", "Augmented Reality", "Biometrik"]}, {"q": "Sebuah perusahaan ingin membuat sistem pencatatan transaksi yang saling terhubung, tersebar dalam jaringan, dan dapat diverifikasi oleh pihak yang berwenang. Perusahaan juga ingin mempersulit perubahan catatan secara sembarangan.\n\nTeknologi yang paling tepat dipertimbangkan adalah ....", "o": ["Cloud Computing", "Artificial Intelligence", "Internet of Things", "Blockchain", "Extended Reality"]}, {"q": "Sebuah perusahaan manufaktur menggunakan robot untuk mengelas dan merakit produk. Sementara itu, bagian administrasi menggunakan sistem yang secara otomatis membuat laporan berdasarkan data yang telah dimasukkan.\n\nKesimpulan yang paling tepat mengenai penerapan teknologi tersebut adalah ....", "o": ["Robotika hanya dapat digunakan dalam bidang pendidikan", "Otomatisasi selalu menghilangkan seluruh pekerjaan manusia", "Robotika dan otomatisasi dapat diterapkan pada pekerjaan industri maupun administratif", "Otomatisasi hanya dapat dilakukan menggunakan internet", "Robotika dan otomatisasi merupakan teknologi penyimpanan data"]}, {"q": "Sebuah sekolah ingin memberikan pengalaman belajar tentang cara kerja mesin industri. Siswa menggunakan perangkat khusus sehingga dapat masuk ke lingkungan simulasi mesin virtual dan berlatih tanpa menggunakan mesin sebenarnya.\n\nTeknologi yang paling sesuai adalah ....", "o": ["Augmented Reality", "Virtual Reality", "Blockchain", "Big Data", "Cloud Computing"]}, {"q": "Seorang siswa menerima pesan yang mengatasnamakan pihak sekolah. Pesan tersebut meminta siswa mengklik tautan dan memasukkan kata sandi akun untuk mendapatkan hadiah. Alamat pengirim terlihat mencurigakan.\n\nTindakan paling tepat yang harus dilakukan siswa adalah ....", "o": ["Membuka tautan untuk memastikan isi pesan", "Memasukkan kata sandi dengan segera", "Membagikan pesan kepada seluruh teman", "Mengabaikan pemeriksaan karena pesan mengatasnamakan sekolah", "Tidak membuka tautan dan memverifikasi informasi melalui saluran resmi sekolah"]}, {"q": "Sebuah sekolah menerapkan sistem pembelajaran digital. Namun, beberapa siswa tidak memiliki smartphone dan akses internet yang memadai. Akibatnya, mereka kesulitan mengikuti pembelajaran.\n\nPermasalahan utama yang terjadi adalah ....", "o": ["Otomatisasi", "Kesenjangan digital", "Inovasi teknologi", "Efisiensi digital", "Interoperabilitas"]}, {"q": "Sebuah perusahaan mulai menggunakan sistem otomatisasi untuk membuat laporan rutin. Pekerjaan yang sebelumnya dilakukan secara manual kini dapat diselesaikan lebih cepat. Beberapa posisi pekerjaan mengalami perubahan tugas.\n\nLangkah paling tepat bagi karyawan untuk menghadapi perubahan tersebut adalah ....", "o": ["Menolak seluruh penggunaan teknologi", "Menghindari pekerjaan yang menggunakan komputer", "Mengembangkan keterampilan baru dan meningkatkan kemampuan yang telah dimiliki", "Mengandalkan pekerjaan lama tanpa melakukan penyesuaian", "Menghentikan penggunaan sistem otomatisasi"]}, {"q": "Sebuah sekolah memilih aplikasi pembelajaran karena memiliki banyak fitur dan tampilan yang menarik. Setelah diterapkan, ternyata aplikasi tersebut sulit digunakan oleh guru dan siswa serta tidak membantu meningkatkan proses pembelajaran.\n\nBerdasarkan prinsip evaluasi teknologi, kesalahan utama sekolah adalah ....", "o": ["Tidak mempertimbangkan kesesuaian teknologi dengan kebutuhan pengguna", "Terlalu memperhatikan keamanan data", "Mengutamakan kemudahan penggunaan", "Melakukan analisis kebutuhan sebelum memilih teknologi", "Mempertimbangkan manfaat teknologi dalam jangka panjang"]}, {"q": "Sebuah aplikasi absensi mampu mencatat kehadiran siswa dan menghasilkan laporan otomatis. Sebelum menggunakan aplikasi, guru membutuhkan waktu 30 menit untuk merekap kehadiran. Setelah menggunakan aplikasi, laporan dapat dihasilkan dalam waktu 5 menit dengan hasil yang tetap sesuai kebutuhan.\n\nAspek evaluasi yang paling jelas mengalami peningkatan adalah ....", "o": ["Privasi", "Keberlanjutan", "Etika", "Efisiensi", "Kesenjangan digital"]}, {"q": "Sebuah perusahaan menyimpan data pelanggan dalam sistem digital. Namun, seluruh karyawan dapat mengakses semua informasi pelanggan tanpa pembatasan. Perusahaan ingin mengurangi risiko penyalahgunaan data.\n\nTindakan yang paling tepat adalah ....", "o": ["Menghapus seluruh data pelanggan", "Memberikan akses yang sama kepada semua orang", "Menyimpan data tanpa menggunakan kata sandi", "Membagikan data kepada pihak luar", "Mengatur hak akses berdasarkan kewenangan masing-masing pengguna"]}, {"q": "Sebuah sekolah ingin menerapkan sistem absensi berbasis internet. Namun, wilayah sekolah terkadang mengalami gangguan koneksi. Jika internet terputus, proses absensi tidak dapat dilakukan.\n\nSolusi yang paling tepat untuk mengurangi risiko tersebut adalah ....", "o": ["Menghentikan penggunaan sistem digital", "Menyediakan pencatatan sementara yang dapat disinkronkan setelah koneksi kembali normal", "Menghapus seluruh data absensi", "Mengganti sistem dengan aplikasi yang selalu membutuhkan internet", "Meminta seluruh siswa melakukan absensi setelah jam sekolah"]}, {"q": "Sebuah perusahaan membandingkan dua sistem pengelolaan data. Sistem A memiliki biaya awal rendah, tetapi membutuhkan banyak pekerjaan manual. Sistem B membutuhkan biaya awal lebih tinggi, tetapi dapat mengurangi pekerjaan manual dan biaya operasional dalam jangka panjang.\n\nAgar keputusan lebih tepat, perusahaan sebaiknya ....", "o": ["Langsung memilih Sistem A karena biaya awalnya rendah", "Memilih sistem yang memiliki tampilan paling menarik", "Membandingkan total biaya dan manfaat kedua sistem dalam jangka panjang", "Mengabaikan biaya pemeliharaan", "Memilih sistem yang paling banyak digunakan perusahaan lain"]}, {"q": "Sebuah toko ingin meningkatkan penjualan. Pemilik toko langsung membeli aplikasi pemasaran digital yang sedang populer tanpa mengetahui masalah utama tokonya. Setelah digunakan, aplikasi tersebut tidak memberikan hasil yang diharapkan.\n\nLangkah yang seharusnya dilakukan sebelum memilih teknologi adalah ....", "o": ["Mengidentifikasi masalah dan kebutuhan toko terlebih dahulu", "Membeli perangkat tambahan", "Mengikuti seluruh tren teknologi", "Mengganti semua karyawan", "Menggunakan aplikasi sebanyak mungkin"]}, {"q": "Sebuah sekolah memiliki tiga alternatif sistem absensi:\n• Formulir digital: mudah diterapkan, tetapi verifikasinya perlu diperhatikan.\n• Aplikasi absensi: fitur lengkap, tetapi membutuhkan biaya layanan dan pemeliharaan.\n• Biometrik: identifikasi lebih terkontrol, tetapi membutuhkan perangkat serta perlindungan data biologis.\n\nSekolah memiliki anggaran terbatas, koneksi internet cukup baik, dan jumlah siswa relatif sedikit. Sekolah juga membutuhkan sistem yang mudah diterapkan.\n\nKeputusan yang paling tepat adalah ....", "o": ["Langsung menggunakan biometrik karena paling canggih", "Menggunakan aplikasi paling mahal agar fiturnya lengkap", "Menggabungkan seluruh sistem tanpa analisis tambahan", "Mempertimbangkan formulir digital dengan mekanisme verifikasi yang memadai", "Tetap menggunakan absensi manual tanpa mengevaluasi alternatif"]}, {"q": "Sebuah perusahaan menggunakan AI untuk membantu menjawab pertanyaan pelanggan. Suatu hari, AI memberikan informasi yang keliru kepada pelanggan. Perusahaan ingin tetap memanfaatkan AI tanpa mengabaikan kualitas layanan.\n\nKebijakan yang paling tepat adalah ....", "o": ["Membiarkan seluruh jawaban AI dikirim tanpa pemeriksaan", "Menghentikan seluruh layanan pelanggan", "Menghapus semua riwayat percakapan pelanggan", "Menyerahkan seluruh keputusan kepada AI", "Melakukan pemeriksaan terhadap hasil AI dan menyediakan pengawasan manusia untuk kasus tertentu"]}, {"q": "Sebuah perusahaan ingin menerapkan sistem baru untuk mengelola dokumen. Hasil analisis menunjukkan bahwa sistem tersebut dapat meningkatkan produktivitas, tetapi membutuhkan perangkat yang belum tersedia dan pelatihan bagi karyawan.\n\nAspek kelayakan yang perlu diperhatikan secara khusus adalah ....", "o": ["Kelayakan teknis dan operasional", "Kelayakan estetika dan popularitas", "Kelayakan pemasaran dan hiburan", "Kelayakan geografis saja", "Kelayakan berdasarkan jumlah fitur"]}, {"q": "Sebuah sekolah akan menerapkan teknologi digital untuk menyimpan data siswa. Sistem tersebut dinilai efektif dan efisien, tetapi belum memiliki mekanisme pencadangan data. Jika server mengalami kerusakan, data berisiko hilang.\n\nAspek yang belum diperhatikan secara memadai adalah ....", "o": ["Produktivitas", "Keamanan dan keberlanjutan pengelolaan data", "Kemudahan komunikasi", "Pemasaran digital", "Inovasi model bisnis"]}, {"q": "Sebuah industri menggunakan sensor IoT untuk memantau kondisi mesin. Data dari sensor dikumpulkan dalam jumlah besar, kemudian dianalisis untuk memperkirakan kemungkinan kerusakan mesin sebelum terjadi.\n\nKombinasi teknologi dan pemanfaatan yang paling tepat adalah ....", "o": ["Blockchain untuk membuat simulasi mesin virtual", "XR untuk menyimpan seluruh data sensor", "IoT untuk mengumpulkan data dan analisis data untuk mendukung prediksi kerusakan", "Cloud Computing untuk menggantikan seluruh sensor", "Robotika untuk mengubah data menjadi dokumen PDF"]}, {"q": "Sebuah sekolah akan memilih sistem digital untuk meningkatkan layanan administrasi. Tim sekolah telah mengidentifikasi masalah, menentukan kebutuhan, membandingkan alternatif, mengevaluasi keamanan, menghitung biaya dan manfaat, serta menilai kelayakan sistem.\n\nLangkah berikutnya yang paling tepat adalah ....", "o": ["Langsung membeli teknologi tanpa penjelasan", "Mengabaikan hasil evaluasi sebelumnya", "Memilih sistem yang paling mahal", "Menyusun rekomendasi berdasarkan hasil analisis disertai alasan dan langkah pengamanan", "Mengganti seluruh kebutuhan sekolah dengan teknologi baru"]}];
+const DURATION=90;let idx=0,left=DURATION,paused=false,tick=null,started=false;
+const el=id=>document.getElementById(id);
+function screen(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));el(id).classList.add('active')}
+function stop(){if(tick){clearInterval(tick);tick=null}}
+function update(){el('time').textContent=String(Math.floor(left/60)).padStart(2,'0')+':'+String(left%60).padStart(2,'0');el('time').classList.toggle('paused',paused);el('time').classList.toggle('urgent',left<=10&&!paused);el('pause').textContent=paused?'LANJUTKAN':'PAUSE';el('pause').className=paused?'primary':'warning';el('note').textContent=paused?'Timer dijeda. Tekan LANJUTKAN untuk meneruskan waktu.':'Siswa menuliskan jawaban pada kertas masing-masing.'}
+function render(){let item=questions[idx];el('counter').textContent=`SOAL ${idx+1} / ${questions.length}`;el('question').textContent=item.q;el('options').innerHTML=item.o.map((v,i)=>`<div class="option"><span class="letter">${'ABCDE'[i]}</span><span>${v.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</span></div>`).join('');el('bar').style.width=((idx+1)/questions.length*100)+'%';el('prev').disabled=idx===0;el('next').textContent=idx===questions.length-1?'Selesaikan →':'Selanjutnya →';update()}
+function run(){stop();paused=false;update();tick=setInterval(()=>{if(paused)return;left--;update();if(left<=0){stop();advance()}},1000)}
+function load(){left=DURATION;render();run()}
+function advance(){if(idx<questions.length-1){idx++;load()}else{stop();screen('finish')}}
+function begin(){idx=0;started=true;screen('quiz');load()}
+el('start').onclick=begin;el('pause').onclick=()=>{paused=!paused;update()};
+el('prev').onclick=()=>{if(idx>0){idx--;load()}};el('next').onclick=advance;
+el('restart').onclick=()=>{if(confirm('Ulangi kuis dari soal pertama?'))begin()};
+el('again').onclick=()=>{stop();started=false;screen('welcome')};
+el('full').onclick=async()=>{try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen();else await document.exitFullscreen()}catch(e){alert('Mode layar penuh tidak tersedia pada browser ini.')}};
+document.addEventListener('keydown',e=>{if(!el('quiz').classList.contains('active'))return;if(e.code==='Space'){e.preventDefault();el('pause').click()}if(e.key==='ArrowRight')el('next').click();if(e.key==='ArrowLeft')el('prev').click()});
+
+/* Perlindungan browser: mencegah tindakan umum, bukan jaminan anti-screenshot */
+(function installExamProtection() {
+  const notice = document.createElement('div');
+  notice.id = 'securityNotice';
+  notice.setAttribute('role', 'status');
+  notice.setAttribute('aria-live', 'polite');
+  document.body.appendChild(notice);
+
+  let noticeTimer = null;
+  let warningCount = 0;
+  function warn(message) {
+    warningCount++;
+    notice.textContent = message + ' (Peringatan: ' + warningCount + ')';
+    notice.classList.add('show');
+    clearTimeout(noticeTimer);
+    noticeTimer = setTimeout(() => notice.classList.remove('show'), 4200);
+  }
+
+  // Mencegah menu konteks, seleksi, drag, copy, dan cut.
+  ['contextmenu', 'selectstart', 'dragstart', 'copy', 'cut'].forEach(type => {
+    document.addEventListener(type, event => {
+      event.preventDefault();
+      if (type === 'copy' || type === 'cut' || type === 'contextmenu') {
+        warn('Fitur tersebut dinonaktifkan selama ujian.');
+      }
+    }, true);
+  });
+
+  // Mencegah shortcut umum untuk menyalin, mencetak, menyimpan, atau membuka alat pengembang.
+  document.addEventListener('keydown', event => {
+    const key = (event.key || '').toLowerCase();
+    const mod = event.ctrlKey || event.metaKey;
+    const blocked = (mod && ['c','x','a','s','p','u'].includes(key)) ||
+      (mod && event.shiftKey && ['i','j','c','k'].includes(key)) ||
+      key === 'f12';
+    if (blocked) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      warn('Shortcut keyboard tersebut dinonaktifkan selama ujian.');
+    }
+  }, true);
+
+  // Menghalangi pemanggilan menu cetak dari keyboard atau skrip halaman.
+  window.addEventListener('beforeprint', event => {
+    warn('Fitur cetak tidak diizinkan selama ujian.');
+  });
+  window.print = function() {
+    warn('Fitur cetak dinonaktifkan selama ujian.');
+  };
+
+  // Peringatan ketika halaman ditinggalkan atau tab/aplikasi berpindah.
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden' && el('quiz')?.classList.contains('active')) {
+      warn('Perpindahan tab atau aplikasi terdeteksi. Tetap fokus pada halaman ujian.');
+    }
+  });
+
+  // Jika fullscreen sedang digunakan, mendeteksi saat siswa keluar darinya.
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement && el('quiz')?.classList.contains('active')) {
+      warn('Mode layar penuh ditutup. Aktifkan kembali melalui tombol Layar Penuh.');
+    }
+  });
+
+  // Mencegah menu konteks pada sentuhan panjang di sebagian browser seluler.
+  document.addEventListener('touchstart', event => {
+    if (event.touches && event.touches.length > 1) {
+      event.preventDefault();
+    }
+  }, { passive: false, capture: true });
+
+  // Pesan pengingat saat pengguna mencoba meninggalkan halaman.
+  window.addEventListener('beforeunload', event => {
+    if (el('quiz')?.classList.contains('active')) {
+      event.preventDefault();
+      event.returnValue = '';
+    }
+  });
+})();
+
+</script></body></html>
